@@ -35,6 +35,7 @@ function TestLayout() {
   const [exitCount, setExitCount] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [questions, setQuestions] = useState();
+  const [isReviewed,setIsReviewed] = useState(false);
 
   // Renderer callback with condition
   const countDownRenderer = ({ hours, minutes, seconds, completed }) => {
@@ -265,12 +266,15 @@ function TestLayout() {
               Clear{" "}
             </Button>
             <Button
-              colorScheme="yellow"
-              variant="solid"
-              onClick={() => onClick("review")}
+              colorScheme={"yellow"}
+              variant={!isReviewed?"solid":"outline"}
+              onClick={() => {
+                onClick("review");
+                setIsReviewed(!isReviewed);
+            }}
             >
-              {" "}
-              Mark for Review
+              {(!isReviewed)? <>Mark for Review</> : <>Marked for Review</>}
+              
             </Button>
           </HStack>
         </>

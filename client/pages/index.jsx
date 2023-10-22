@@ -20,16 +20,16 @@ export default function Home() {
         <h1 className={styles.title}>
           <Stack spacing={"6"}>
             <Text>
-              <a href="https://pulzion.co.in">Pulzion</a> MCQ Platform
+              <a href="https://pulzion.co.in" style={{color:"#DD6B20"}}>Pulzion</a> MCQ Platform
             </Text>
             <Center>
               {(data && !error) ? (
                 <Link href={"/tests"}>
-                  <Button w="30%">Go to Tests</Button>
+                  <Button colorScheme="orange" w="30%">Go to Tests</Button>
                 </Link>
               ) : (
                 <Link href="/login">
-                  <Button w="30%">Login</Button>
+                  <Button colorScheme="orange" w="30%">Login</Button>
                 </Link>
               )}
             </Center>

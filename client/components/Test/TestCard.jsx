@@ -36,11 +36,11 @@ function TestCard(props) {
   return (
     <Flex
       boxShadow={"lg"}
-      width={"640px"}
+      width={"600px"}
       direction={{ base: "column-reverse", md: "row" }}
       rounded={"xl"}
       p={10}
-      justifyContent={"space-around"}
+      // justifyContent={"space-arund"}
       position={"relative"}
       bg={useColorModeValue("white", "blue.800")}
     >

@@ -11,7 +11,7 @@ export default function Success() {
       <Heading as="h2" size="xl" mt={6} mb={2}>
          Your test has been submitted
       </Heading>
-      <Button onClick={() => router.push('/')}>Go Home</Button>
+      <Button colorScheme="orange" onClick={() => router.push('/')}>Go Home</Button>
     </Box>
     </> 
   );

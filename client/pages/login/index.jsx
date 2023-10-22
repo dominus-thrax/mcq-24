@@ -89,11 +89,12 @@ function Loginpage() {
               </FormControl>
 
               <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
+              colorScheme="orange"
+                // bg={"orange.400"}
+                // color={"white"}
+                // _hover={{
+                //   bg: "orange.500",
+                // }}
                 onClick={onSubmit}
               >
                 Sign in

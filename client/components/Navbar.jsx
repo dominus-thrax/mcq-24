@@ -27,14 +27,14 @@ function Nav() {
   const router = useRouter();
   return (
     <>
-      <Box bg={useColorModeValue("light.100", "blue.900")} p={4} h="12vh">
+      <Box bg={useColorModeValue("light.100", "blue.900")} p={4} h="15h">
         <Flex h="auto" alignItems={"center"} w="100%">
           <HStack spacing={7} w="100%">
             <Box>
-              {/* <Text fontWeight={800} fontSize="3xl">
-                Pulzion 2023
-              </Text> */}
-            <Image src="homepage_logo.png" height="50px" alt="Pulzion logo"></Image>
+              <Text fontWeight={800} color="orange.500" fontSize="3xl">
+                Pulzion Tech-or-Treat
+              </Text>
+            {/* <Image src="homepage_logo.png" height="50px" alt="Pulzion logo"></Image> */}
             </Box>
             <Spacer />
             <SwitchThemeButton colorScheme="orange"/>
@@ -62,6 +62,7 @@ function Nav() {
                           router.push("/");
                         }}
                         variant="ghost"
+                        colorScheme="orange"
                       >
                         Logout
                       </Button>
