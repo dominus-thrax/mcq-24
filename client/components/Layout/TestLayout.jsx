@@ -14,6 +14,13 @@ import {
   AlertDescription,
   Spinner,
   useToast,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import Router, { useRouter } from "next/router";
@@ -35,7 +42,7 @@ function TestLayout() {
   const [exitCount, setExitCount] = useState(0);
   const [questionNumber, setQuestionNumber] = useState(0);
   const [questions, setQuestions] = useState();
-  const [isReviewed,setIsReviewed] = useState(false);
+  const [isReviewed, setIsReviewed] = useState(false);
 
   // Renderer callback with condition
   const countDownRenderer = ({ hours, minutes, seconds, completed }) => {
@@ -50,6 +57,10 @@ function TestLayout() {
       );
     }
   };
+
+  //Alert Dialog
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = React.useRef()
 
   function getQuestion() {
     const { data, error } = useSWR(
@@ -66,7 +77,7 @@ function TestLayout() {
   useEffect(() => {
     setQuestions(data);
   }, [data]);
-  useEffect(() => {}, [questions]);
+  useEffect(() => { }, [questions]);
 
   function toggleFullscreen() {
     document.documentElement.requestFullscreen();
@@ -192,13 +203,51 @@ function TestLayout() {
             {/* Side section for showing legends and question completion status */}
 
             <Container w={"20%"} px="2%" py={10} mt={6} height="auto">
+              <Button
+                colorScheme={"green"}
+                onClick={onOpen}
+                w="100%"
+
+              >
+                Submit Test
+              </Button>
+
+              <AlertDialog
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+              >
+                <AlertDialogOverlay>
+                  <AlertDialogContent>
+                    <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+                      Submit Test
+                    </AlertDialogHeader>
+
+                    <AlertDialogBody>
+                      Are you sure want to submit the test? You can't undo this action afterwards.
+                    </AlertDialogBody>
+
+                    <AlertDialogFooter>
+                      <Button ref={cancelRef} onClick={onClose}>
+                        Cancel
+                      </Button>
+                      <Button colorScheme='green' onClick={() => onClick("submit")} ml={3}>
+                        Submit
+                      </Button>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialogOverlay>
+              </AlertDialog>
+
+
+
               {/*  legends section start*/}
               <Countdown
                 date={new Date(
                   data[0].fk_question.fk_event.end_time
                 ).setMinutes(
                   new Date(data[0].fk_question.fk_event.end_time).getMinutes() -
-                    .8
+                  .8
                 )}
                 renderer={countDownRenderer}
                 onComplete={() => onComplete()}
@@ -227,11 +276,12 @@ function TestLayout() {
                         <Button
                           w="15%"
                           borderRadius={"3rem"}
-                          colorScheme={colorFunction(val)}
+                          borderWidth={2}
+                          colorScheme={(questionNumber !== index) ? colorFunction(val) : "orange"}
                           key={index}
                           onClick={() => setQuestionNumber(index)}
                           variant={
-                            questionNumber !== index ? "outline" : "solid"
+                            (val.answer !== null || val.review_status) ? "solid" : "outline"
                           }
                         >
                           {index + 1}
@@ -241,22 +291,11 @@ function TestLayout() {
                   </Center>
                 </Box>
               </SimpleGrid>
-              <Button
-                colorScheme={"green"}
-                w="100%"
-                onClick={() => onClick("submit")}
-              >
-                Submit Test
-              </Button>
+
             </Container>
           </Flex>
           <HStack ml="3%">
-            <Button variant="outline" onClick={() => onClick("previous")}>
-              <ArrowBackIcon /> Previous
-            </Button>
-            <Button variant="outline" onClick={() => onClick("next")}>
-              Next <ArrowForwardIcon />
-            </Button>
+
             <Button
               colorScheme="red"
               variant="solid"
@@ -267,15 +306,21 @@ function TestLayout() {
             </Button>
             <Button
               colorScheme={"yellow"}
-              variant={!isReviewed?"solid":"outline"}
+              variant={!isReviewed ? "solid" : "outline"}
               onClick={() => {
                 onClick("review");
                 setIsReviewed(!isReviewed);
-            }}
+              }}
             >
-              {(!isReviewed)? <>Mark for Review</> : <>Marked for Review</>}
-              
+              {(!isReviewed) ? <>Mark for Review</> : <>Marked for Review</>}
             </Button>
+            <Button variant="outline" onClick={() => onClick("previous")}>
+              <ArrowBackIcon /> Previous
+            </Button>
+            <Button variant="outline" onClick={() => onClick("next")}>
+              Next <ArrowForwardIcon />
+            </Button>
+
           </HStack>
         </>
       ) : (
@@ -304,7 +349,8 @@ function TestLayout() {
             Full Screen
           </Button>
         </Alert>
-      )}
+      )
+      }
     </>
   );
 }
