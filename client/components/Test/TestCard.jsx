@@ -4,8 +4,11 @@ import {
   Flex,
   Text,
   useColorModeValue,
+  Image,
 } from "@chakra-ui/react";
 import Router from "next/router";
+
+// import logo from "../public/events_bg.png"
 
 function TestCard(props) {
   const { fk_event, id, started, finished } = props;
@@ -37,14 +40,14 @@ function TestCard(props) {
       direction={{ base: "column-reverse", md: "row" }}
       rounded={"xl"}
       p={10}
-      justifyContent={"space-between"}
+      justifyContent={"space-around"}
       position={"relative"}
-      bg={useColorModeValue("white", "gray.800")}
+      bg={useColorModeValue("white", "blue.800")}
     >
       <Flex
         direction={"column"}
         textAlign={"left"}
-        justifyContent={"space-between"}
+        // justifyContent={"space-between"}
       >
         {/* TODO: Check test redirect */}
         {/* TODO: Code and image in question */}
@@ -53,6 +56,7 @@ function TestCard(props) {
         <Text fontWeight={"bold"} fontSize={"4xl"}>
           {fk_event.name}
         </Text>
+        {/* <Image src="events_bg.png" boxSize="25 50"></Image> */}
         <Text fontSize={"2xl"}>Time:</Text>
         {finished ? (
           <Text mt={3}>Already Attempted</Text>
@@ -60,7 +64,7 @@ function TestCard(props) {
           <Button
             mt={4}
             width={40}
-            colorScheme={"teal"}
+            colorScheme={"orange"}
             disabled={checkDates() ? false : true}
             onClick={onClick}
           >

@@ -10,6 +10,7 @@ export const SwitchThemeButton = () => {
       aria-label="Switch Theme"
       onClick={toggleColorMode}
       icon={colorMode === "light" ? <SunIcon /> : <MoonIcon />}
+      colorScheme="orange"
     />
   );
 };

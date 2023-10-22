@@ -1,5 +1,7 @@
 export const apiData = {
-  url: "https://api.pulzion.co.in/",
+  // url: "https://api.pulzion.co.in/",
+  // url : "http://localhost:8000/"
+  url : "https://api.mcq.pulzion.co.in/"
 };
 // /** @type {import('next').NextConfig} */
 // const nextConfig = {

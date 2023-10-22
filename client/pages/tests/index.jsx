@@ -5,6 +5,7 @@ import {
   SimpleGrid,
   useColorModeValue,
   Spinner,
+  css,
 } from "@chakra-ui/react";
 import Nav from "../../components/Navbar";
 import useSWR from "swr";
@@ -40,11 +41,15 @@ export default function availableTests() {
   const redirect = () => {
     router.push("/");
   };
+
+
   return (
-    <div>
+    <div >
       <Nav />
       {userData &&
         <Flex
+          // color = "orange.300"
+          color={useColorModeValue("orange.500", "orange.300")}
           textAlign={"center"}
           pt={3}
           justifyContent={"center"}
@@ -56,7 +61,7 @@ export default function availableTests() {
               py={5}
               fontSize={48}
               fontWeight={"bold"}
-              color={useColorModeValue("gray.700", "gray.50")}
+              color={useColorModeValue("orange.600", "orange.200")}
             >
               Registered Contests
             </chakra.h1>

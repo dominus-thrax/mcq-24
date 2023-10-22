@@ -59,7 +59,7 @@ function Loginpage() {
         minH={"100vh"}
         align={"center"}
         justify={"center"}
-        bg={useColorModeValue("gray.50", "gray.800")}
+        bg={useColorModeValue("gray.50", "blue.800")}
       >
         <Stack spacing={"8"} maxW={"max"} mx={"auto"} py={12} px={6}>
           <Stack align={"center"}>

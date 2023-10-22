@@ -20,7 +20,7 @@ export default function Home() {
         <h1 className={styles.title}>
           <Stack spacing={"6"}>
             <Text>
-              <a href="https://pulzion.in">Pulzion</a> MCQ Platform
+              <a href="https://pulzion.co.in">Pulzion</a> MCQ Platform
             </Text>
             <Center>
               {(data && !error) ? (

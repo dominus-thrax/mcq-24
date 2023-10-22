@@ -34,7 +34,14 @@ export default function Question({ question, questionNumber, onSelectOption }) {
           >
             {question?.fk_question.statement}
           </Text>
-          <img src={question?.fk_question.image_url} alt="question_image"></img>
+          {/* {question?.fk_question.image_url ? (
+            <img
+              src={question?.fk_question.image_url}
+              alt="question_image"
+            ></img>
+          ) : (
+            <p>No Image</p>
+          )} */}
         </Stack>
 
         <Flex>
